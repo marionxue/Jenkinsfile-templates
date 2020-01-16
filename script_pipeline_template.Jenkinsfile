@@ -5,6 +5,7 @@ node {
             echo "Multiline shell steps works too"
             ls -lah
         '''
+
     }
     stage('Build2') {
         sh 'echo "Hello World"'
@@ -12,6 +13,7 @@ node {
             echo "Multiline shell steps works too"
             ls -lah
         '''
+
     }
     stage('Build3') {
         sh 'echo "Hello World"'
@@ -19,6 +21,7 @@ node {
             echo "Multiline shell steps works too"
             ls -lah
         '''
+
     }
     stage('Build4') {
         sh 'echo "Hello World"'
@@ -26,5 +29,6 @@ node {
             echo "Multiline shell steps works too"
             ls -lah
         '''
+        
     }
 }
