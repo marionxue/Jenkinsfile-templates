@@ -22,7 +22,8 @@ pipeline {
         }
         stage('CheckDeployBeforce') {
             steps {
-                timeout(time:3, unit: 'MINUTES') { //如果三分钟内没有部署完就判定为超时
+                timeout(time:3, unit: 'MINUTES') { 
+                    //如果三分钟内没有部署完就判定为超时
                     retry(3) {
                         sh 'curl -I https://google.com'
                         sh 'touch success'
