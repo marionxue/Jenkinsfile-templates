@@ -22,11 +22,21 @@ pipeline {
         }
         stage('CheckDeployBeforce') {
             steps {
+                sh 'echo "DeployQA"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
+            }
+        }
+        stage('DeployQA') {
+            steps {
+
                 retry(3) {
                     sh 'curl -I https://google.com'
                     sh 'touch success'
                 }
-
+                // 1分钟后进行健康状态检查,如果不存在该文件,判定部署服务不正常,因此限制最多执行三次部署,三次部署如果还没有通过,判定部署失败
                 timeout(time:1, unit: 'MINUTES') {
                     sh '''
                         ls -al
@@ -36,15 +46,6 @@ pipeline {
                         fi
                     '''
                 }
-            }
-        }
-        stage('DeployQA') {
-            steps {
-                sh 'echo "DeployQA"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
             }
         }
         stage('CheckDeployAfter') {
